@@ -1,13 +1,21 @@
 #include <stdio.h>
 #include "./ansi_code.h"
+#include <string.h>
 #include "./print_color.h"
 
 void generic_print(int indent, char *type, char *name){
    if(type[0] == 'D'){
-        printf("%*s[%s]\n", indent, "", name);
+       for(int i = 0 ; i < indent ; i++)
+           printf("-");
+        printf("[%s]\n", name);
+       for(int i = 0 ; i < indent + strlen(name) + 1; i++)
+           printf(" ");
+       printf("|\n");
    }
   else {
-        printf("%*s-|%s| %s\n", indent, "", type, name);
+       for(int i = 0 ; i < indent ; i++)
+           printf("-");
+        printf("|%s| %s\n", type, name);
    } 
 }
 void white_print(int indent, char *type, char *name){
@@ -38,6 +46,11 @@ void bold_print(int indent, char *type, char *name){
 
 void bold_red_print(int indent, char *type, char *name){
     printf(BRED);
+    generic_print(indent, type, name);
+    printf(reset);
+}
+void light_blue_print(int indent, char *type, char *name){
+    printf(CYN);
     generic_print(indent, type, name);
     printf(reset);
 }
