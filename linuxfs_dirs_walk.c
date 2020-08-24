@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-void walk_dirs(char *dir_name, int indent){
+void walk_dirs(char *dir_name, int indent, int current_depth, int depth){
     DIR *directory;
     struct dirent *entry;
 
@@ -21,7 +21,8 @@ void walk_dirs(char *dir_name, int indent){
                     continue;
                 snprintf(path, sizeof(path), "%s/%s", dir_name, entry->d_name);
                 bold_print(indent, "DIR\0", entry->d_name);
-                walk_dirs(path, indent + 2);
+                if(current_depth < depth)
+                    walk_dirs(path, indent + 2, current_depth + 1, depth);
                 break;
             }
             case DT_BLK:{

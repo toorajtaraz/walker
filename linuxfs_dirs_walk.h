@@ -1,4 +1,4 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
-void walk_dirs(char *dir_name, int indent);
+void walk_dirs(char *dir_name, int indent, int current_depth, int depth);
 #endif
