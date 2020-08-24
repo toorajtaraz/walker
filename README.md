@@ -19,6 +19,7 @@ sudo make install
 ```bash
 walker -h
 ```
+
 Output is going to be like:
 
 ```bash
