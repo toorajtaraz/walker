@@ -37,7 +37,7 @@ void walk_dirs(char *dir_name, int indent, int current_depth, int depth){
                         break;
                 }
             case DT_LNK:{
-                        blue_print(indent, "SYMBOLIC LINK\0", entry->d_name);
+                        light_blue_print(indent, "SYMBOLIC LINK\0", entry->d_name);
                         break;
                 }
             case DT_REG:{
