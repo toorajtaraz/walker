@@ -1,3 +1,4 @@
+#include "./linuxfs_dirs_walk.h"
 #include "./print_color.h"
 #include <dirent.h>
 #include <stdio.h>
@@ -5,7 +6,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-void walk_dirs(char *dir_name, int indent) {
+void walk_dirs(char *dir_name, int indent){
     DIR *directory;
     struct dirent *entry;
 
@@ -54,10 +55,4 @@ void walk_dirs(char *dir_name, int indent) {
         }
     }
     closedir(directory);
-}
-
-
-int main(void) {
-    walk_dirs(".", 0);
-    return 0;
 }
