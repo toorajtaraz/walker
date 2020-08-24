@@ -8,9 +8,9 @@ void generic_print(int indent, char *type, char *name){
        for(int i = 0 ; i < indent ; i++)
            printf("-");
         printf("[%s]\n", name);
-       for(int i = 0 ; i < indent + strlen(name) + 1; i++)
+       for(int i = 0 ; i < indent - 2 ; i++)
            printf(" ");
-       printf("|\n");
+       printf("|___\n");
    }
   else {
        for(int i = 0 ; i < indent ; i++)
