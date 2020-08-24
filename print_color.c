@@ -35,3 +35,9 @@ void bold_print(int indent, char *type, char *name){
     generic_print(indent, type, name);
     printf(reset);
 }
+
+void bold_red_print(int indent, char *type, char *name){
+    printf(BRED);
+    generic_print(indent, type, name);
+    printf(reset);
+}
