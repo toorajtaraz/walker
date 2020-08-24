@@ -1,3 +1,4 @@
+#include "./print_color.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <string.h>
@@ -18,36 +19,36 @@ void walk_dirs(char *dir_name, int indent) {
                 if(!strcmp(entry->d_name,".") || !strcmp(entry->d_name, "..")) 
                     continue;
                 snprintf(path, sizeof(path), "%s/%s", dir_name, entry->d_name);
-                printf("%*s[%s]\n", indent, "", entry->d_name);
+                bold_print(indent, "DIR\0", entry->d_name);
                 walk_dirs(path, indent + 2);
                 break;
             }
             case DT_BLK:{
-                        printf("%*s-|%s| %s\n", indent, "", "BLOCK DEVICE", entry->d_name);
+                        green_print(indent, "BLOCK DEVICE\0", entry->d_name);
                         break;
                 }
             case DT_CHR:{
-                        printf("%*s-|%s| %s\n", indent, "", "CHAR DEVICE", entry->d_name);
+                        green_print(indent, "CHAR DEVICE\0", entry->d_name);
                         break;
                 }
             case DT_FIFO:{
-                        printf("%*s-|%s| %s\n", indent, "", "FIFO", entry->d_name); 
+                        red_print(indent, "FIFO\0", entry->d_name); 
                         break;
                 }
             case DT_LNK:{
-                        printf("%*s-|%s| %s\n", indent, "", "SYMBOLIC LINK", entry->d_name);
+                        blue_print(indent, "SYMBOLIC LINK\0", entry->d_name);
                         break;
                 }
             case DT_REG:{
-                        printf("%*s-|%s| %s\n", indent, "", "FILE", entry->d_name);
+                        blue_print(indent, "FILE\0", entry->d_name);
                         break;
                 }
             case DT_SOCK:{
-                        printf("%*s-|%s| %s\n", indent, "", "UNIX DOMAIN SOCKET", entry->d_name); 
+                        red_print(indent, "UNIX DOMAIN SOCKET\0", entry->d_name); 
                         break;
                 }
             case DT_UNKNOWN:{
-                        printf("%*s-|%s| %s\n", indent, "", "UNKNOWN", entry->d_name); 
+                        bold_red_print(indent, "UNKNOWN\0", entry->d_name); 
                         break;
                 }
         }
