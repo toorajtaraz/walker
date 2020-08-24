@@ -1,11 +1,10 @@
-#include "./linuxfs_dirs_walk.h"
-#include "./print_color.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
-
+#include "./linuxfs_dirs_walk.h"
+#include "./print_color.h"
 void walk_dirs(char *dir_name, int indent, int current_depth, int depth){
     DIR *directory;
     struct dirent *entry;
