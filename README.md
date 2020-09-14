@@ -30,9 +30,9 @@ Output is going to be like:
   \\//\\//     //     \\    ||      || \\    ||       || \\   
    \/  \/    .//       \\. .||...| .||  \\. .||....| .||  \\.
 for indentifing path to walk use -D:
-===> -D /home
+===>walker -D /home
 for configuring maximum depth use -d:
-===> -d 200
+===>walker -d 200
 for creating/updating DB for queries use -u:
 ===>walker -u
 for locating any file or directory on your system use -q:
