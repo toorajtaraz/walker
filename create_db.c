@@ -36,22 +36,12 @@ void create_data(char* type, char* path, char* name, char* data) {
     data[i] = '\0';
 }
 
-int creat_db(char *path) {
-    int fd;
-    mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
-    fd = open("/tmp/walker.db", O_WRONLY | O_APPEND, mode);
-    if (fd < 0) {
-        printf("\n\nsomething went wrong...\n\n");
-        close(fd);
-        exit(fd);
-    }
+void creat_db(char *path, int fd) {
     write(fd, path, sizeof(char) * 255);
     write(fd, "\n", sizeof(char));
-    close(fd);
-    return fd;
 }
 
-void walk_query(char *dir_name, char *data){
+void walk_query(char *dir_name, char *data, int fd){
     DIR *directory;
     struct dirent *entry;
     int dir_in_count = 0;
@@ -67,43 +57,43 @@ void walk_query(char *dir_name, char *data){
                     continue;
                 snprintf(path, sizeof(path), "%s/%s", dir_name, entry->d_name);
                 create_data("directory\0", path, "\0", data);
-                creat_db(data);
-                walk_query(path, data);
+                creat_db(data, fd);
+                walk_query(path, data, fd);
                 break;
             }
             case DT_BLK:{
                         create_data("BLOCK DEVICE\0", dir_name, entry->d_name, data);
-                        creat_db(data);
+                        creat_db(data, fd);
                         break;
                 }
             case DT_CHR:{
                         create_data("CHAR DEVICE\0", dir_name, entry->d_name, data);
-                        creat_db(data);
+                        creat_db(data, fd);
                         break;
                 }
             case DT_FIFO:{
                         create_data("FIFO\0", dir_name, entry->d_name, data);
-                        creat_db(data);
+                        creat_db(data, fd);
                         break;
                 }
             case DT_LNK:{
                         create_data("SYMBOLIC LINK\0", dir_name, entry->d_name, data);
-                        creat_db(data);
+                        creat_db(data, fd);
                         break;
                 }
             case DT_REG:{
                         create_data("FILE\0", dir_name, entry->d_name, data);
-                        creat_db(data);
+                        creat_db(data, fd);
                         break;
                 }
             case DT_SOCK:{
                         create_data("UNIX DOMAIN SOCKET\0", dir_name, entry->d_name, data);
-                        creat_db(data);
+                        creat_db(data, fd);
                         break;
                 }
             case DT_UNKNOWN:{
                         create_data("UNKNOWN\0", dir_name, entry->d_name, data);
-                        creat_db(data);
+                        creat_db(data, fd);
                         break;
                 }
         }
@@ -119,8 +109,8 @@ void run () {
     int fd;
     mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
     fd = open("/tmp/walker.db", O_WRONLY | O_CREAT | O_TRUNC, mode);
+    walk_query("/", data, fd);
     close(fd);
-    walk_query("/", data);
 }
 
 int read_line(int fd, char *line) {

@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
     int opt;
     int mode = 0;
 
-    while((opt = getopt(argc, argv, ":D:d:q:u:h")) != -1){
+    while((opt = getopt(argc, argv, ":D:d:q:uh")) != -1){
         switch(opt){
             case 'q':
                     strcpy(walk_directory, optarg);
