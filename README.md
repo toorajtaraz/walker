@@ -32,6 +32,12 @@ for indentifing path to walk use -D:
 ===> -D /home
 for configuring maximum depth use -d:
 ===> -d 200
+for creating/updating DB for queries use -u:
+===>walker -u
+for locating any file or directory on your system use -q:
+===>walker -q ".jpg"
+===> NOTE THAT ALL SPACES OR TABS ARE REMOVED FROM YOUR INPUT SO IF YOU WANT THEM
+===> USE "\" TO ESCAPE THEM!
 for help use -h
 ```
 
