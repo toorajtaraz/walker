@@ -1,11 +1,11 @@
-#include "./ansi_code.h"
+#include "./utils/headers/ansi_code.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "./linuxfs_dirs_walk.h"
-#include "./db.h"
+#include "./utils/headers/linuxfs_dirs_walk.h"
+#include "./utils/headers/db.h"
 
 void help() {
     printf(BRED);
