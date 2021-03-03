@@ -1,4 +1,4 @@
-# WALKER
+# WALKER 
 
 WALKER is a simple command line program that walks through directories.
 You can look up and locate any kind of file or directory on your system.
