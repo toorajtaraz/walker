@@ -109,6 +109,7 @@ void run () {
     mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
     fd = open("/tmp/walker.db", O_WRONLY | O_CREAT | O_TRUNC, mode);
     walk_query("/", data, fd);
+    free(data);
     close(fd);
 }
 
