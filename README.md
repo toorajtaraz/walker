@@ -9,11 +9,10 @@ First of all clone this repo:
 ```bash
 git clone https://gitlab.com/tooraj.info/walker.git
 ```
-Then you need to make and install it as simple as this:
+Then you need to build the code:
 
 ```bash
 make
-sudo make install
 ```
 ## Usage
 
